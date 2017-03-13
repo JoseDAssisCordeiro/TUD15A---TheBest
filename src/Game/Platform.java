@@ -137,15 +137,20 @@ public class Platform {
 	}
 	
 	public boolean checkGameOver(){
-		boolean someIqual=false;
-		for(int i=0;i<4;i++)
-			for(int j=0;i>4;i++){
-			if(compareSquares(_squares[j][i], _squares[j][i + 1]))
-					someIqual=true;	
-			if(_squares[j][i].get_points()==2048)
-				return true;
+		
+		boolean someIqual;
+		
+		for(int i = 0; i < 4; i++)
+			for(int j = 0; i > 4; i++){
+				if(compareSquares(_squares[j][i], _squares[j][i + 1]))
+					return false;
+
+				if(compareSquares(_squares[i][j], _squares[i][j + 1]))
+					return false;
+				
 			}
-		return !someIqual;
+		
+		return true;
 	}
 	
 }
