@@ -1,6 +1,7 @@
 package Game;
 
 import Game.Square;
+import java.util.Random;
 
 public class Platform {
 	
@@ -8,13 +9,18 @@ public class Platform {
 	
 	public Platform(){
 		
+		int i, j;
+		Random random = new Random();
+		
 		_squares = new Square[4][4];
 		
-		   for(int i=0; i<_squares.length; i++) {
-		        for(int j=0; j<_squares[i].length; j++) {
-		        _squares[i][j] = new Square(j, j);
-		     }
-		  }
+		for(i = 0; i < 4; i ++)
+			for(j = 0; j < 4; j++)
+				_squares[i][j] = new Square();
+		
+		for(i = 0; i < 3; i++)
+			_squares[random.nextInt(4)][random.nextInt(4)].set_active(true);
+		
 	}
 	
 	public boolean compareSquares( Square Q1 , Square Q2) {
@@ -24,7 +30,11 @@ public class Platform {
 			return false;
 	}
 	
-	public void eraseSquare(){}
+	public void eraseSquare(){
+		
+		
+		
+	}
 	
 	
 	//first parameter mantains all the caracteristic
@@ -38,9 +48,8 @@ public class Platform {
 		for(int i = 3 ; i > 0 ; i--){
 			for(int j = 3; j > 0; j--){
 				if (_squares[i][j].get_active() == false){
-					for(int k = j ; k > 1; k--){
-						_squares[i][k - 1].changeLocation(i , k );
-					}
+					
+					
 				}
 			}
 		}
@@ -60,9 +69,8 @@ public class Platform {
 		for(int i = 0 ; i < 4; i++){
 			for(int j = 0; j < 4; j++){
 				if (_squares[i][j].get_active() == false){
-					for(int k = j ; k < 3; k++){
-						_squares[i][k + 1].changeLocation(i , k );
-					}
+
+					
 				}
 			}
 		}
@@ -83,9 +91,8 @@ public class Platform {
 		for(int i = 0 ; i < 4; i++){
 			for(int j = 0; j < 4; j++){
 				if (_squares[j][i].get_active() == false){
-					for(int k = i ; k < 3; k++){
-						_squares[j][k + 1].changeLocation(j , k );
-					}
+
+					
 				}
 			}
 		}
@@ -113,10 +120,8 @@ public class Platform {
 		for(int i = 3 ; i > 0 ; i--){
 			for(int j = 3; j > 0; j--){
 				if (_squares[j][i].get_active() == false){
-					for(int k = i ; k > 1; k--){
-						_squares[j][k - 1].changeLocation(j , k );
-						
-					}
+
+					
 				}
 			}
 		}
@@ -131,10 +136,21 @@ public class Platform {
 		}
 	}
 	
-	public void checkGameOver(){
+	public boolean checkGameOver(){
 		
+		boolean someIqual;
+		
+		for(int i = 0; i < 4; i++)
+			for(int j = 0; i > 4; i++){
+				if(compareSquares(_squares[j][i], _squares[j][i + 1]))
+					return false;
+
+				if(compareSquares(_squares[i][j], _squares[i][j + 1]))
+					return false;
+				
+			}
+		
+		return true;
 	}
-	
-	
 	
 }
