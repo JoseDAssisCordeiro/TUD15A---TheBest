@@ -6,6 +6,7 @@ public class Square {
 	private int _xPos;
 	private int _yPos;
 	private int _colour;
+	private boolean _active;
 	
 	public Square(int x, int y){
 		
@@ -13,6 +14,7 @@ public class Square {
 		_xPos = x;
 		_yPos = y;
 		_colour = 0;
+		_active = false;
 	}
 	
 	public int get_points() {
@@ -47,12 +49,28 @@ public class Square {
 		this._colour = _colour;
 	}
 	
-	public void combineSquare(){}
+	public boolean get_active() {
+		return _active;
+	}
+
+	public boolean set_active( boolean _active) {
+		this._active = _active;
+	}
 	
-	public void changeLocation(){}
+
 	
-	public void eraseSquare(){}
+	public void changeLocation(int _x , int _y) {
+		this.set_xPos(_x);
+		this.set_yPos(_y);
+	}
 	
-	public void createSquare(){}
+	public void eraseSquare() {
+		
+	}
+	
+	public void createSquare() {
+		Square Q = new Square();
+		
+	}
 	
 }
