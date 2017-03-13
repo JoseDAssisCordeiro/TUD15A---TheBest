@@ -136,8 +136,16 @@ public class Platform {
 		}
 	}
 	
-	public void checkGameOver(){
-		
+	public boolean checkGameOver(){
+		boolean someIqual=false;
+		for(int i=0;i<4;i++)
+			for(int j=0;i>4;i++){
+			if(compareSquares(_squares[j][i], _squares[j][i + 1]))
+					someIqual=true;	
+			if(_squares[j][i].get_points()==2048)
+				return true;
+			}
+		return !someIqual;
 	}
 	
 }
