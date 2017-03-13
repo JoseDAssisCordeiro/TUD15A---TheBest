@@ -12,6 +12,7 @@ public class Platform {
 		
 	}
 	
+<<<<<<< HEAD
 	public boolean compareSquares( Square Q1 , Square Q2) {
 		if (Q1.get_points() == Q2.get_points())
 			return true;
@@ -23,6 +24,17 @@ public class Platform {
 		Q1.set_points(Q1.get_points() * 2);
 		Q2.eraseSquare();
 	}
+=======
+	public Square[][] get_squares() {
+		return _squares;
+	}
+
+	public void set_squares(Square[][] _squares) {
+		this._squares = _squares;
+	}
+
+	public void compareSquares(){}
+>>>>>>> origin/master
 	
 	public void moveRight() {
 		
