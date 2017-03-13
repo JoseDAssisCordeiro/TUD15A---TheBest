@@ -10,6 +10,11 @@ public class Platform {
 		
 		_squares = new Square[4][4];
 		
+		   for(int i=0; i<_squares.length; i++) {
+		        for(int j=0; j<_squares[i].length; j++) {
+		        _squares[i][j] = new Square(j, j);
+		     }
+		  }
 	}
 	
 	public boolean compareSquares( Square Q1 , Square Q2) {
@@ -30,8 +35,8 @@ public class Platform {
 	
 	public void moveRight() {
 		
-		for(int i = 4 ; i > 0 ; i--){
-			for(int j = 4; j > 0; j--){
+		for(int i = 3 ; i > 0 ; i--){
+			for(int j = 3; j > 0; j--){
 				if (_squares[i][j].get_active() == false){
 					for(int k = j ; k > 1; k--){
 						_squares[i][k - 1].changeLocation(i , k );
@@ -40,8 +45,8 @@ public class Platform {
 			}
 		}
 		
-		for(int i = 4 ; i > 0 ; i--){
-			for(int j = 4; j > 0; j--){
+		for(int i = 3 ; i > 0 ; i--){
+			for(int j = 3; j > 0; j--){
 				if ( compareSquares(_squares[i][j - 1], _squares[i][j])){
 					combineSquares(_squares[i][j - 1], _squares[i][j]);
 					
@@ -105,8 +110,8 @@ public class Platform {
 
 	public void moveDown(){
 		
-		for(int i = 4 ; i > 0 ; i--){
-			for(int j = 4; j > 0; j--){
+		for(int i = 3 ; i > 0 ; i--){
+			for(int j = 3; j > 0; j--){
 				if (_squares[j][i].get_active() == false){
 					for(int k = i ; k > 1; k--){
 						_squares[j][k - 1].changeLocation(j , k );
@@ -116,8 +121,8 @@ public class Platform {
 			}
 		}
 		
-		for(int i = 4 ; i > 0 ; i--){
-			for(int j = 4; j > 0; j--){
+		for(int i = 3 ; i > 0 ; i--){
+			for(int j = 3; j > 0; j--){
 				if ( compareSquares(_squares[j][i - 1], _squares[j][i])){
 					combineSquares(_squares[j][i - 1], _squares[j][i]);
 					
