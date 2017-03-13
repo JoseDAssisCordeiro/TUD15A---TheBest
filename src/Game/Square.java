@@ -53,24 +53,14 @@ public class Square {
 		return _active;
 	}
 
-	public boolean set_active( boolean _active) {
+	public void set_active( boolean _active) {
 		this._active = _active;
 	}
-	
-
 	
 	public void changeLocation(int _x , int _y) {
 		this.set_xPos(_x);
 		this.set_yPos(_y);
 	}
 	
-	public void eraseSquare() {
-		
-	}
-	
-	public void createSquare() {
-		Square Q = new Square();
-		
-	}
 	
 }
