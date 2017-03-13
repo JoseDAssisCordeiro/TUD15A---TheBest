@@ -95,6 +95,14 @@ public class Platform {
 		}
 	}
 	
+	public Square[][] get_squares() {
+		return _squares;
+	}
+
+	public void set_squares(Square[][] _squares) {
+		this._squares = _squares;
+	}
+
 	public void moveDown(){
 		
 		for(int i = 4 ; i > 0 ; i--){
@@ -102,6 +110,7 @@ public class Platform {
 				if (_squares[j][i].get_active() == false){
 					for(int k = i ; k > 1; k--){
 						_squares[j][k - 1].changeLocation(j , k );
+						
 					}
 				}
 			}
@@ -120,5 +129,7 @@ public class Platform {
 	public void checkGameOver(){
 		
 	}
+	
+	
 	
 }
