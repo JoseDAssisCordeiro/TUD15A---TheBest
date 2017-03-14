@@ -47,9 +47,11 @@ public class Platform {
 			for(int j = 0; j < 4; j++){
 				if (_squares[j][i].get_active() == false){
 					for(int k = i; k < 0; k--){
-						_squares[j][k] = _squares[j][k-1];
+						if (_squares[j][k].get_active() == true){
+							_squares[j][i] = _squares[j][k];
+							_squares[j][k].set_active(false);
+						}
 					}
-					_squares[j][0].set_active(false);
 				}
 			}
 		}
