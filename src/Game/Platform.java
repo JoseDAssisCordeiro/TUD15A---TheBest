@@ -209,7 +209,7 @@ public class Platform {
 				if(compareSquares(_squares[j][i], _squares[j][i + 1]))
 					return false;
 
-				if(compareSquares(_squares[i][j], _squares[i+1][j]))
+				if(compareSquares(_squares[j][i], _squares[j+1][i]))
 					return false;
 			}
 
