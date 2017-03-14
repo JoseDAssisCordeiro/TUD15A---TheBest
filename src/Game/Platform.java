@@ -30,9 +30,9 @@ public class Platform {
 			return false;
 	}
 	
-	public void eraseSquare(){
+	public void eraseSquare(Square Q2){
 		
-		
+		_squares[Q2.get_xPos()][Q2.get_yPos()].set_active(false);
 		
 	}
 	
@@ -40,22 +40,23 @@ public class Platform {
 	//first parameter mantains all the caracteristic
 	public void combineSquares(Square Q1, Square Q2) {
 		Q1.set_points(Q1.get_points() * 2);
-		eraseSquare();
+		eraseSquare(Q2);
 	}
 	
 	public void moveRight() {
 		
-		for(int i = 4 ; i > 0 ; i--){
-			for(int j = 4; j > 0; j--){
-				if (_squares[i][j].get_active() == false){
-					
-					
+		for(int i = 3 ; i > 0 ; i--){
+			for(int j = 0; j < 4; j++){
+				if (_squares[j][i].get_active() == false){
+					for(int k = i; k < 4; k++){
+						_squares[j][k] = _squares[j][k-1];
+					}
 				}
 			}
 		}
 		
-		for(int i = 4 ; i > 0 ; i--){
-			for(int j = 4; j > 0; j--){
+		for(int i = 3 ; i > 0 ; i--){
+			for(int j = 3; j > 0; j--){
 				if ( compareSquares(_squares[i][j - 1], _squares[i][j])){
 					combineSquares(_squares[i][j - 1], _squares[i][j]);
 					
@@ -140,14 +141,16 @@ public class Platform {
 		
 		boolean someIqual;
 		
-		for(int i = 0; i < 4; i++)
-			for(int j = 0; i > 4; i++){
+		for(int i = 0; i < 3; i++)
+			for(int j = 0; i < 3; i++){
 				if(compareSquares(_squares[j][i], _squares[j][i + 1]))
 					return false;
 
 				if(compareSquares(_squares[i][j], _squares[i][j + 1]))
 					return false;
 				
+				if(!_squares[i][j].get_active())
+					return false;
 			}
 		
 		return true;
