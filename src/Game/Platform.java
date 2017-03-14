@@ -31,7 +31,7 @@ public class Platform {
 	}
 	
 	public void eraseSquare(Square Q){
-		Q.set_active(false);		
+		Q.set_active(false);	
 	}
 	
 	
@@ -44,10 +44,12 @@ public class Platform {
 	public void moveRight() {
 		
 		for(int i = 3 ; i > 0 ; i--){
-			for(int j = 3; j > 0; j--){
-				if (_squares[i][j].get_active() == false){
-					
-					
+			for(int j = 0; j < 4; j++){
+				if (_squares[j][i].get_active() == false){
+					for(int k = i; k < 4; k++){
+						_squares[j][k] = _squares[j][k-1];
+					}
+
 				}
 			}
 		}
@@ -138,14 +140,16 @@ public class Platform {
 		
 		boolean someIqual;
 		
-		for(int i = 0; i < 4; i++)
-			for(int j = 0; i > 4; i++){
+		for(int i = 0; i < 3; i++)
+			for(int j = 0; i < 3; i++){
 				if(compareSquares(_squares[j][i], _squares[j][i + 1]))
 					return false;
 
 				if(compareSquares(_squares[i][j], _squares[i][j + 1]))
 					return false;
 				
+				if(!_squares[i][j].get_active())
+					return false;
 			}
 		
 		return true;
