@@ -78,6 +78,7 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	
 		
 		g.drawString(message,0,400);
+		g.drawString("Press BACKSPACE to undo",0,450);
 		g.drawString("Press SPACE to exit",0,500);
 		       
       
@@ -121,6 +122,9 @@ public class MainFrame extends BasicGame implements InputProviderListener{
         else if(key == Input.KEY_DOWN){
         	engine.setBackup(platform);
         	platform.moveDown();
+        }
+        else if(key == Input.KEY_BACK){
+        	//undo function  	
         }
         else if(key == Input.KEY_SPACE){
         	engine.setBackup(platform);
