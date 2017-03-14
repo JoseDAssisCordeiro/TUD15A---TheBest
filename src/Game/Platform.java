@@ -51,6 +51,7 @@ public class Platform {
 					for(int k = i; k < 4; k++){
 						_squares[j][k] = _squares[j][k-1];
 					}
+
 				}
 			}
 		}
@@ -118,8 +119,8 @@ public class Platform {
 
 	public void moveDown(){
 		
-		for(int i = 4 ; i > 0 ; i--){
-			for(int j = 4; j > 0; j--){
+		for(int i = 3 ; i > 0 ; i--){
+			for(int j = 3; j > 0; j--){
 				if (_squares[j][i].get_active() == false){
 
 					
@@ -127,8 +128,8 @@ public class Platform {
 			}
 		}
 		
-		for(int i = 4 ; i > 0 ; i--){
-			for(int j = 4; j > 0; j--){
+		for(int i = 3 ; i > 0 ; i--){
+			for(int j = 3; j > 0; j--){
 				if ( compareSquares(_squares[j][i - 1], _squares[j][i])){
 					combineSquares(_squares[j][i - 1], _squares[j][i]);
 					
