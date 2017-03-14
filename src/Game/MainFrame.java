@@ -30,7 +30,7 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 
 	public MainFrame() {
 		super("The best 2048 game ever");
-		engine = new GameEngine();
+		engine = GameEngine.getInstance();
 		platform = engine.getPlatform();
 	}
 

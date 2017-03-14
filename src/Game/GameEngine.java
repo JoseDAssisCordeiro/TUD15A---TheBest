@@ -11,15 +11,25 @@ public class GameEngine {
 	private int _totalPoints_backup;
 	private boolean _undoDone;
 	
+	private static GameEngine engine;	
 	
-	
-	public GameEngine(){
+	private GameEngine(){
 		
 		_totalPoints = 0;
 		_record = 0;
 		_platform = new Platform();
 		_platform_backup = new Platform();
 		_undoDone = false;
+	}
+	
+	public static GameEngine getInstance(){
+		
+		if (engine == null){
+			
+			engine = new GameEngine();
+		}
+		
+		return engine;
 	}
 	
 	
