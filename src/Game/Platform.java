@@ -73,6 +73,21 @@ public class Platform {
 				}
 			}
 		}
+		
+		
+		if (checkGameOver() == false){
+			boolean i =  true;
+			while (i){
+				Random random = new Random();
+				int j = random.nextInt(4);
+				int k = random.nextInt(4);
+				if (_squares[j][k].get_active() == false ){
+					_squares[j][k].set_active(true);
+					i = false;
+				}			
+			}
+		}
+		
 	}
 	
 	public void moveLeft(){
@@ -101,6 +116,18 @@ public class Platform {
 //			}
 //		}
 		
+		if (checkGameOver() == false){
+			boolean i =  true;
+			while (i){
+				Random random = new Random();
+				int j = random.nextInt(4);
+				int k = random.nextInt(4);
+				if (_squares[j][k].get_active() == false ){
+					_squares[j][k].set_active(true);
+					i = false;
+				}			
+			}
+		}
 	}
 	
 	public void moveUp(){
@@ -151,15 +178,7 @@ public class Platform {
 				}
 			}
 		}
-//		
-//		for(int i = 3 ; i > 0 ; i--){
-//			for(int j = 3; j > 0; j--){
-//				if ( compareSquares(_squares[j][i - 1], _squares[j][i])){
-//					combineSquares(_squares[j][i - 1], _squares[j][i]);
-//					
-//				}
-//			}
-//		}
+
 	}
 	
 	public Square[][] get_squares() {
@@ -181,6 +200,32 @@ public class Platform {
 	}
 
 
+
+					
+
+		
+		for(int i = 3 ; i > 0 ; i--){
+			for(int j = 3; j > 0; j--){
+				if ( compareSquares(_squares[j][i - 1], _squares[j][i])){
+					combineSquares(_squares[j][i - 1], _squares[j][i]);
+					
+				}
+			}
+		}
+		if (checkGameOver() == false){
+			boolean i =  true;
+			while (i){
+				Random random = new Random();
+				int j = random.nextInt(4);
+				int k = random.nextInt(4);
+				if (_squares[j][k].get_active() == false ){
+					_squares[j][k].set_active(true);
+					i = false;
+				}			
+			}
+		}
+	}
+>>>>>>> 47eab7a901514539db885dd9d6257010eaf86aca
 	
 	public boolean checkGameOver(){
 		
