@@ -31,13 +31,13 @@ public class Platform {
 	}
 	
 	public void eraseSquare(Square Q){
-		Q.set_active(false);	
+		Q.set_active(false);
 	}
 	
 	
 	//first parameter mantains all the caracteristic
 	public void combineSquares(Square Q1, Square Q2) {
-		Q2.set_points(Q1.get_points() * 2);
+		Q2.set_points(Q2.get_points() * 2);
 		eraseSquare(Q1);
 	}
 	
@@ -48,7 +48,8 @@ public class Platform {
 				if (_squares[j][i].get_active() == false){
 					for(int k = i; k < 0; k--){
 						if (_squares[j][k].get_active() == true){
-							_squares[j][i] = _squares[j][k];
+							_squares[j][i].set_points(_squares[j][k].get_points());
+							_squares[j][i].set_active(true);
 							_squares[j][k].set_active(false);
 						}
 					}
