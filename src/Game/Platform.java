@@ -6,10 +6,11 @@ import java.util.Random;
 public class Platform {
 	
 	private Square[][] _squares;
+	private int _activeSquares;
 	
 	public Platform(){
 		
-		int i, j;
+		int i, j, k;
 		Random random = new Random();
 		
 		_squares = new Square[4][4];
@@ -17,9 +18,17 @@ public class Platform {
 		for(i = 0; i < 4; i ++)
 			for(j = 0; j < 4; j++)
 				_squares[i][j] = new Square();
+
+		_activeSquares = 0;
 		
-		for(i = 0; i < 3; i++)
-			_squares[random.nextInt(4)][random.nextInt(4)].set_active(true);
+		for(i = 0; i < 3; i++){
+			j = random.nextInt(4);
+			k = random.nextInt(4);
+			if(!_squares[j][k].get_active()){
+				_squares[j][k].set_active(true);
+				_activeSquares++;
+			}
+		}
 		
 	}
 	
@@ -40,6 +49,7 @@ public class Platform {
 		
 		int x = Q2.get_points() * 2;
 		
+		_activeSquares--;
 		Q2.set_points(x);
 		eraseSquare(Q1);
 	}
@@ -96,7 +106,7 @@ public class Platform {
 			for(int j = 0; j < 3; j++){
 				if (compareSquares(_squares[j][i], _squares[j+1][i])){
 					combineSquares(_squares[j+1][i], _squares[j][i]);
-					for(int k = j + 1; k > 0; k--){
+					for(int k = j + 1; k < 3; k++){
 						_squares[k][i].set_points(_squares[k+1][i].get_points());
 						_squares[k][i].set_active(_squares[k+1][i].get_active());
 						_squares[k+1][i].set_active(false);
@@ -190,6 +200,9 @@ public class Platform {
 
 	
 	public boolean checkGameOver(){
+
+		if(_activeSquares < 16)
+			return false;
 		
 		for(int i = 0; i < 3; i++)
 			for(int j = 0; i < 3; i++){
@@ -198,11 +211,8 @@ public class Platform {
 
 				if(compareSquares(_squares[i][j], _squares[i+1][j]))
 					return false;
-				
-				if(!_squares[i][j].get_active())
-					return false;
 			}
-		
+
 		return true;
 	}
 	
@@ -211,16 +221,17 @@ public class Platform {
 		Random random = new Random();
 		
 		int i, j;
-		
-		while(true){
-			
-			i = random.nextInt(4);
-			j = random.nextInt(4);
-			if(_squares[i][j].get_active() == false){
-				_squares[i][j].set_active(true);
-				_squares[i][j].set_points(2);
-				break;
+		if(_activeSquares < 16)
+			while(true){
+				
+				i = random.nextInt(4);
+				j = random.nextInt(4);
+				if(_squares[i][j].get_active() == false){
+					_squares[i][j].set_active(true);
+					_squares[i][j].set_points(2);
+					_activeSquares++;
+					break;
+				}
 			}
-		}
 	}
 }
