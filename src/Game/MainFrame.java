@@ -63,10 +63,13 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 		
 		if(gameOver){
 			g.drawString("GAMEOVER",startPlatformX,startPlatformY);
+			g.drawString("Press ENTER to restart",0,450);
+		}
+		else{
+			g.drawString("Press BACKSPACE to undo",0,450);	
 		}
 		
-		g.drawString(message,0,400);
-		g.drawString("Press BACKSPACE to undo",0,450);
+
 		g.drawString("Press SPACE to exit",0,500);
 		   
       
