@@ -212,7 +212,15 @@ public class Platform {
 				if(compareSquares(_squares[j][i], _squares[j+1][i]))
 					return false;
 			}
+		
+		for(int i = 0; i < 3; i++){
+			if(compareSquares(_squares[3][i], _squares[3][i+1]))
+				return false;
 
+			if(compareSquares(_squares[i][3], _squares[i+1][3]))
+				return false;
+		}
+		
 		return true;
 	}
 	
