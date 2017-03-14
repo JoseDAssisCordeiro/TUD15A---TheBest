@@ -24,12 +24,6 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	public static final int startPlatformY = 100;
 	
 		
-	private boolean up;
-	private boolean down;
-	private boolean left;
-	private boolean right;
-	
-	
 	private String message = "";
 	
 	private GameEngine engine;
@@ -61,7 +55,8 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 				
 		g.drawString("The best 2048 game ever, enjoy.", 100, 10);	
-		
+		g.drawString("Current score:" + engine.get_totalPoints(), 100, 50);	
+		g.drawString("Record: " + engine.get_record(), 300, 50);
 		
 	   Square[][] tiles = platform.get_squares();
 	   for(int i=0; i<tiles.length; i++) {
@@ -78,13 +73,14 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	        	}
 	        	
 	        	g.setColor(Color.darkGray);	        	
-	        	g.drawString(Integer.toString(tiles[0][1].get_points()), x , y);
+	        	g.drawString(Integer.toString(tiles[i][j].get_points()), x + 35 , y + 35);
 	        	g.setColor(Color.white);
 	        }
 	    }
 	
 		
 		g.drawString(message,0,400);
+		g.drawString("Press SPACE to exit",0,500);
 		       
       
 	}
@@ -96,41 +92,36 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 
 	@Override
 	public void update(GameContainer container, int arg1) throws SlickException {
-		// TODO Auto-generated method stub
-        if(container.getInput().isKeyDown(Input.KEY_LEFT)) {
-        	platform.moveLeft();
-        }
-        else if(container.getInput().isKeyDown(Input.KEY_RIGHT)){
-        	platform.moveRight();
-        }
-        else if(container.getInput().isKeyDown(Input.KEY_UP)){
-        	platform.moveUp();
-        }
-        else if(container.getInput().isKeyDown(Input.KEY_DOWN)){
-        	platform.moveDown();
-        }
-        	
-		
 	}
 	
 	public void keyPressed(int key, char c) {
-		message = "You pressed key code "+key+" (character = "+c+")";
 	}
 	
-	public void keyReleased(int key, char c) {
-		message = "You relesead key code "+key+" (character = "+c+")";
+	public void keyReleased(int key, char c) {        
+		if(key == Input.KEY_LEFT) {
+        	platform.moveLeft();
+        }
+        else if(key == Input.KEY_RIGHT){
+        	platform.moveRight();
+        }
+        else if(key == Input.KEY_UP){
+        	platform.moveUp();
+        }
+        else if(key == Input.KEY_DOWN){
+        	platform.moveDown();
+        }
+        else if(key == Input.KEY_SPACE){
+        	System.exit(0);
+        }
 	}
 
 	@Override
 	public void controlPressed(Command arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void controlReleased(Command arg0) {
-		// TODO Auto-generated method stub
-		
+	public void controlReleased(Command arg0) {		
 	}
 
 }
