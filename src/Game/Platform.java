@@ -206,15 +206,20 @@ public class Platform {
 		return true;
 	}
 	
-	public void createSquare(){
+	public void randomSquare(){
+		
 		Random random = new Random();
-		int i = random.nextInt(4);
-		int j = random.nextInt(4);
-		boolean k = true;
-		while(k){
+		
+		int i, j;
+		
+		while(true){
+			
+			i = random.nextInt(4);
+			j = random.nextInt(4);
 			if(_squares[i][j].get_active() == false){
 				_squares[i][j].set_active(true);
-				k = false;
+				_squares[i][j].set_points(2);
+				break;
 			}
 		}
 	}

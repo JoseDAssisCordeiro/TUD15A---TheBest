@@ -125,26 +125,26 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 			if(key == Input.KEY_LEFT) {
 	        	engine.setBackup(platform);
 				platform.moveLeft();
-	        	platform.createSquare();
+				platform.randomSquare();
 	        	platform.checkGameOver();
 	        }
 	        else if(key == Input.KEY_RIGHT){
 	        	engine.setBackup(platform);
 	        	platform.moveRight();
-	        	platform.createSquare();
+				platform.randomSquare();
 	        	platform.checkGameOver();
 	        }
 	        else if(key == Input.KEY_UP){
 	        	engine.setBackup(platform);
 	        	platform.moveUp();
-	        	platform.createSquare();
+				platform.randomSquare();
 	        	platform.checkGameOver();
 	        	
 	        }
 	        else if(key == Input.KEY_DOWN){
 	        	engine.setBackup(platform);
 	        	platform.moveDown();
-	        	platform.createSquare();
+				platform.randomSquare();
 	        	platform.checkGameOver();
 	        }
 	        else if(key == Input.KEY_BACK){
