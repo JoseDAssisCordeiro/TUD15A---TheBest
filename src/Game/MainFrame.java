@@ -124,7 +124,7 @@ public class MainFrame extends BasicGame implements InputProviderListener{
         	platform.moveDown();
         }
         else if(key == Input.KEY_BACK){
-        	//undo function  	
+        	engine.undo();
         }
         else if(key == Input.KEY_SPACE){
         	engine.setBackup(platform);
