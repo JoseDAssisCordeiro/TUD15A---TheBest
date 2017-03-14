@@ -30,17 +30,15 @@ public class Platform {
 			return false;
 	}
 	
-	public void eraseSquare(){
-		
-		
-		
+	public void eraseSquare(Square Q){
+		Q.set_active(false);		
 	}
 	
 	
 	//first parameter mantains all the caracteristic
 	public void combineSquares(Square Q1, Square Q2) {
 		Q1.set_points(Q1.get_points() * 2);
-		eraseSquare();
+		eraseSquare(Q2);
 	}
 	
 	public void moveRight() {
