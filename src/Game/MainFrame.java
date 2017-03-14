@@ -22,8 +22,6 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	public static final int startPlatformX = 100;
 	public static final int startPlatformY = 100;
 	
-		
-	private String message = "";
 	
 	private GameEngine engine;
 	private Platform platform;
