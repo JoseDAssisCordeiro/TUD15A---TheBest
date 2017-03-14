@@ -115,7 +115,16 @@ public class Platform {
 	}
 
 	public void set_squares(Square[][] _squares) {
-		this._squares = _squares;
+		for(int i = 0; i < 4; i++){
+			for(int j = 0; j < 4; j++){
+				this._squares[i][j].set_active(_squares[i][j].get_active());
+				this._squares[i][j].set_colour(_squares[i][j].get_colour());
+				this._squares[i][j].set_points(_squares[i][j].get_points());
+				this._squares[i][j].set_xPos(_squares[i][j].get_xPos());
+				this._squares[i][j].set_yPos(_squares[i][j].get_yPos());
+			}
+		}
+		//this._squares = _squares;
 	}
 
 	public void moveDown(){

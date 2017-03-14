@@ -7,6 +7,10 @@ public class GameEngine {
 	private int _totalPoints;
 	private int _record;
 	private Platform _platform;
+	private Platform _platform_backup;
+	private int _totalPoints_backup;
+	
+	
 	
 	public GameEngine(){
 		
@@ -15,12 +19,17 @@ public class GameEngine {
 		_platform = new Platform();
 			
 	}
-
+	
+	public void setBackup(Platform p){
+		this._platform_backup.set_squares(p.get_squares());
+	}
+	
 	public int get_totalPoints() {
 		return _totalPoints;
 	}
 
 	public void set_totalPoints(int _totalPoints) {
+		this._totalPoints_backup = this.get_totalPoints();
 		this._totalPoints = _totalPoints;
 	}
 

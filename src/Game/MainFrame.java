@@ -99,18 +99,23 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	
 	public void keyReleased(int key, char c) {        
 		if(key == Input.KEY_LEFT) {
-        	platform.moveLeft();
+        	engine.setBackup(platform);
+			platform.moveLeft();
         }
         else if(key == Input.KEY_RIGHT){
+        	engine.setBackup(platform);
         	platform.moveRight();
         }
         else if(key == Input.KEY_UP){
+        	engine.setBackup(platform);
         	platform.moveUp();
         }
         else if(key == Input.KEY_DOWN){
+        	engine.setBackup(platform);
         	platform.moveDown();
         }
         else if(key == Input.KEY_SPACE){
+        	engine.setBackup(platform);
         	System.exit(0);
         }
 	}
