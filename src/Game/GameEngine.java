@@ -20,6 +20,10 @@ public class GameEngine {
 		_platform_backup = new Platform();	
 	}
 	
+	public Platform getPlatform(){
+		return _platform;
+	}
+	
 	public void setBackup(Platform p){
 		this._platform_backup.set_squares(p.get_squares());
 	}
