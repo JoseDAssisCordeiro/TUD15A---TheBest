@@ -17,7 +17,7 @@ public class GameEngine {
 		_totalPoints = 0;
 		_record = 0;
 		_platform = new Platform();
-			
+		_platform_backup = new Platform();	
 	}
 	
 	public void setBackup(Platform p){
@@ -64,6 +64,8 @@ public class GameEngine {
 	public void undo(){
 		
 		
+		this._platform.set_squares(this._platform_backup.get_squares());
+		this._totalPoints = this._totalPoints_backup;
 		
 		
 	}

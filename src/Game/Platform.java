@@ -113,6 +113,7 @@ public class Platform {
 	}
 	
 	public Square[][] get_squares() {
+				
 		return _squares;
 	}
 
