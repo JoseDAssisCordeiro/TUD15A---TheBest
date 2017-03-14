@@ -64,6 +64,8 @@ public class GameEngine {
 	public void undo(){
 		
 		
+		this._platform.set_squares(this._platform_backup.get_squares());
+		this._totalPoints = this._totalPoints_backup;
 		
 		
 	}
