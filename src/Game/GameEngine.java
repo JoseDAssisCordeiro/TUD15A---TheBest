@@ -17,7 +17,7 @@ public class GameEngine {
 		_totalPoints = 0;
 		_record = 0;
 		_platform = new Platform();
-			
+		_platform_backup = new Platform();	
 	}
 	
 	public void setBackup(Platform p){
