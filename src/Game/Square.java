@@ -31,7 +31,6 @@ public class Square {
 		this._yPos = _yPos;
 	}
 
-	
 	public int get_points() {
 		return _points;
 	}

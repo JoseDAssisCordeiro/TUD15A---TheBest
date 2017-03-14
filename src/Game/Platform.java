@@ -46,8 +46,8 @@ public class Platform {
 		for(int i = 3 ; i > 0 ; i--){
 			for(int j = 0; j < 4; j++){
 				if (_squares[j][i].get_active() == false){
-					for(int k = 0; k < i; k--){
-						_squares[j][k+1] = _squares[j][k];
+					for(int k = i; k < 0; k--){
+						_squares[j][k] = _squares[j][k-1];
 					}
 					_squares[j][0].set_active(false);
 				}
@@ -58,7 +58,7 @@ public class Platform {
 			for(int j = 0; j < 4; j++){
 				if ( compareSquares(_squares[j][i - 1], _squares[j][i])){
 					combineSquares(_squares[j][i - 1], _squares[j][i]);
-					for(int k = 0; k < i + 1; k--){
+					for(int k = i; k < 0 + 1; k--){
 						_squares[j][k+1] = _squares[j][k];
 					}
 					_squares[j][0].set_active(false);
@@ -140,8 +140,6 @@ public class Platform {
 	}
 	
 	public boolean checkGameOver(){
-		
-		boolean someIqual;
 		
 		for(int i = 0; i < 3; i++)
 			for(int j = 0; i < 3; i++){
