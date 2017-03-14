@@ -72,22 +72,7 @@ public class Platform {
 					}
 				}
 			}
-		}
-		
-		
-		if (checkGameOver() == false){
-			boolean i =  true;
-			while (i){
-				Random random = new Random();
-				int j = random.nextInt(4);
-				int k = random.nextInt(4);
-				if (_squares[j][k].get_active() == false ){
-					_squares[j][k].set_active(true);
-					i = false;
-				}			
-			}
-		}
-		
+		}	
 	}
 	
 	public void moveLeft(){
@@ -107,25 +92,16 @@ public class Platform {
 			}
 		}
 		
-//		for(int i = 0 ; i < 4; i++){
-//			for(int j = 0; j < 3; j++){
-//				if ( compareSquares(_squares[i][j], _squares[i][j + 1])){
-//					combineSquares(_squares[i][j], _squares[i][j + 1]);
-//					
-//				}
-//			}
-//		}
-		
-		if (checkGameOver() == false){
-			boolean i =  true;
-			while (i){
-				Random random = new Random();
-				int j = random.nextInt(4);
-				int k = random.nextInt(4);
-				if (_squares[j][k].get_active() == false ){
-					_squares[j][k].set_active(true);
-					i = false;
-				}			
+		for(int i = 0 ; i < 4 ; i++){
+			for(int j = 0; j < 3; j++){
+				if (compareSquares(_squares[j][i], _squares[j+1][i])){
+					combineSquares(_squares[j+1][i], _squares[j][i]);
+					for(int k = j + 1; k > 0; k--){
+						_squares[k][i].set_points(_squares[k+1][i].get_points());
+						_squares[k][i].set_active(_squares[k+1][i].get_active());
+						_squares[k+1][i].set_active(false);
+					}
+				}
 			}
 		}
 		
@@ -150,9 +126,9 @@ public class Platform {
 		
 		
 		for(int j = 0; j < 4; j++){
-			for(int i = 0 ; i < 4 ; i++){
-				if ( compareSquares(_squares[j][i - 1], _squares[j][i])){
-					combineSquares(_squares[j][i], _squares[j][i - 1]);
+			for(int i = 0 ; i < 3 ; i++){
+				if ( compareSquares(_squares[j][i + 1], _squares[j][i])){
+					combineSquares(_squares[j][i + 1], _squares[j][i]);
 					for(int k = i + 1; k < 3; k++){
 						_squares[j][k].set_points(_squares[j][k+1].get_points());
 						_squares[j][k].set_active(_squares[j][k+1].get_active());
@@ -180,6 +156,19 @@ public class Platform {
 			}
 		}
 
+		for(int i = 0 ; i < 4 ; i++){
+			for(int j = 3; j > 0; j--){
+				if ( compareSquares(_squares[j - 1][i], _squares[j][i])){
+					combineSquares(_squares[j - 1][i], _squares[j][i]);
+					for(int k = j - 1; k > 0; k--){
+						_squares[k][i].set_points(_squares[k-1][i].get_points());
+						_squares[k][i].set_active(_squares[k-1][i].get_active());
+						_squares[k-1][i].set_active(false);
+					}
+				}
+			}
+		}
+
 	}
 	
 	public Square[][] get_squares() {
@@ -197,36 +186,8 @@ public class Platform {
 				this._squares[i][j].set_yPos(_squares[i][j].get_yPos());
 			}
 		}
-		//this._squares = _squares;
 	}
 
-
-
-					
-
-		
-		for(int i = 3 ; i > 0 ; i--){
-			for(int j = 3; j > 0; j--){
-				if ( compareSquares(_squares[j][i - 1], _squares[j][i])){
-					combineSquares(_squares[j][i - 1], _squares[j][i]);
-					
-				}
-			}
-		}
-		if (checkGameOver() == false){
-			boolean i =  true;
-			while (i){
-				Random random = new Random();
-				int j = random.nextInt(4);
-				int k = random.nextInt(4);
-				if (_squares[j][k].get_active() == false ){
-					_squares[j][k].set_active(true);
-					i = false;
-				}			
-			}
-		}
-	}
->>>>>>> 47eab7a901514539db885dd9d6257010eaf86aca
 	
 	public boolean checkGameOver(){
 		
