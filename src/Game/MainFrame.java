@@ -8,11 +8,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.command.BasicCommand;
 import org.newdawn.slick.command.Command;
-import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.command.InputProviderListener;
-import org.newdawn.slick.command.KeyControl;
 
 
 public class MainFrame extends BasicGame implements InputProviderListener{
@@ -57,7 +54,7 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 		g.drawString("The best 2048 game ever, enjoy.", 100, 10);	
 		g.drawString("Current score:" + engine.get_totalPoints(), 100, 50);	
 		g.drawString("Record: " + engine.get_record(), 300, 50);
-		
+
 	   Square[][] tiles = platform.get_squares();
 	   for(int i=0; i<tiles.length; i++) {
 	        for(int j=0; j<tiles[i].length; j++) {
@@ -67,14 +64,15 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	        	g.drawRect(x, y, tileWidth, tileHeight);
 	        	
 	        	if(tiles[i][j].get_active()){
-	        	g.setColor(Color.magenta);
+	        	g.setColor(getColor(tiles[i][j].get_points()));
 	        	g.fillRect(x + 3, y + 3 ,tileWidth - 5,tileHeight -5);
 	        	g.setColor(Color.white);
-	        	}
+	        	
 	        	
 	        	g.setColor(Color.darkGray);	        	
 	        	g.drawString(Integer.toString(tiles[i][j].get_points()), x + 35 , y + 35);
 	        	g.setColor(Color.white);
+	        	}
 	        }
 	    }
 	
@@ -85,6 +83,16 @@ public class MainFrame extends BasicGame implements InputProviderListener{
       
 	}
 
+
+	private Color getColor(int points) {
+		Color color = new Color(255, 255, 204);
+		while(points != 1){
+			color = color.darker(0.03f);
+			points /= 2; 
+		}
+			
+		return color;
+	}
 
 	@Override
 	public void init(GameContainer container) throws SlickException {		
