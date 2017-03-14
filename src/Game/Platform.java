@@ -196,7 +196,7 @@ public class Platform {
 				if(compareSquares(_squares[j][i], _squares[j][i + 1]))
 					return false;
 
-				if(compareSquares(_squares[i][j], _squares[i][j + 1]))
+				if(compareSquares(_squares[i][j], _squares[i+1][j]))
 					return false;
 				
 				if(!_squares[i][j].get_active())
@@ -206,4 +206,16 @@ public class Platform {
 		return true;
 	}
 	
+	public void createSquare(){
+		Random random = new Random();
+		int i = random.nextInt(4);
+		int j = random.nextInt(4);
+		boolean k = true;
+		while(k){
+			if(_squares[i][j].get_active() == false){
+				_squares[i][j].set_active(true);
+				k = false;
+			}
+		}
+	}
 }

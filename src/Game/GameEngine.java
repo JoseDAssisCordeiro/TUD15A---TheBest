@@ -22,6 +22,7 @@ public class GameEngine {
 		_undoDone = false;
 	}
 	
+	
 	public Platform getPlatform(){
 		return _platform;
 	}
