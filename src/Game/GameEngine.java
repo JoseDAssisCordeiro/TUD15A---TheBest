@@ -65,6 +65,8 @@ public class GameEngine {
 	
 	public void restart(){
 		
+		if(_totalPoints > _record)
+			_record = _totalPoints;
 		_totalPoints = 0;
 		_platform = new Platform();
 		

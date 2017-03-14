@@ -121,26 +121,29 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	}
 	
 	public void keyReleased(int key, char c) { 
+		
+		int points = engine.get_totalPoints();
+		
 		if(!gameOver){
 			if(key == Input.KEY_LEFT) {
 	        	engine.setBackup(platform);
-				platform.moveLeft();
+	        	engine.set_totalPoints( points + platform.moveLeft());
 				platform.randomSquare();
 	        }
 	        else if(key == Input.KEY_RIGHT){
 	        	engine.setBackup(platform);
-	        	platform.moveRight();
+	        	engine.set_totalPoints( points + platform.moveRight());
 				platform.randomSquare();
 	        }
 	        else if(key == Input.KEY_UP){
 	        	engine.setBackup(platform);
-	        	platform.moveUp();
+	        	engine.set_totalPoints( points + platform.moveUp());
 				platform.randomSquare();
 	        	
 	        }
 	        else if(key == Input.KEY_DOWN){
 	        	engine.setBackup(platform);
-	        	platform.moveDown();
+	        	engine.set_totalPoints( points + platform.moveDown());
 				platform.randomSquare();
 	        }
 	        else if(key == Input.KEY_BACK){

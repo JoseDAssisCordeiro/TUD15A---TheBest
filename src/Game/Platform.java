@@ -45,17 +45,21 @@ public class Platform {
 	
 	
 	//first parameter mantains all the characteristics
-	public void combineSquares(Square Q1, Square Q2) {
+	public int combineSquares(Square Q1, Square Q2) {
 		
 		int x = Q2.get_points() * 2;
 		
 		_activeSquares--;
 		Q2.set_points(x);
 		eraseSquare(Q1);
+		
+		return Q2.get_points();
 	}
 	
-	public void moveDown() {
-
+	public int moveDown() {
+		
+		int points = 0;
+		
 		for(int j = 0; j < 4; j++){
 			for(int i = 3 ; i > 0 ; i--){
 				if (_squares[j][i].get_active() == false){
@@ -74,7 +78,7 @@ public class Platform {
 		for(int j = 0; j < 4; j++){
 			for(int i = 3 ; i > 0 ; i--){
 				if ( compareSquares(_squares[j][i - 1], _squares[j][i])){
-					combineSquares(_squares[j][i - 1], _squares[j][i]);
+					points += combineSquares(_squares[j][i - 1], _squares[j][i]);
 					for(int k = i-1; k > 0; k--){
 						_squares[j][k].set_points(_squares[j][k-1].get_points());
 						_squares[j][k].set_active(_squares[j][k-1].get_active());
@@ -82,10 +86,14 @@ public class Platform {
 					}
 				}
 			}
-		}	
+		}
+		
+		return points;
 	}
 	
-	public void moveLeft(){
+	public int moveLeft(){
+		
+		int points = 0;
 		
 		for(int i = 0; i < 4; i++){
 			for(int j = 0 ; j < 4 ; j++){
@@ -105,7 +113,7 @@ public class Platform {
 		for(int i = 0 ; i < 4 ; i++){
 			for(int j = 0; j < 3; j++){
 				if (compareSquares(_squares[j][i], _squares[j+1][i])){
-					combineSquares(_squares[j+1][i], _squares[j][i]);
+					points += combineSquares(_squares[j+1][i], _squares[j][i]);
 					for(int k = j + 1; k < 3; k++){
 						_squares[k][i].set_points(_squares[k+1][i].get_points());
 						_squares[k][i].set_active(_squares[k+1][i].get_active());
@@ -115,9 +123,13 @@ public class Platform {
 			}
 		}
 		
+		return points;
+		
 	}
 	
-	public void moveUp(){
+	public int moveUp(){
+		
+		int points = 0;
 		
 		for(int j = 0; j < 4; j++){
 			for(int i = 0 ; i < 4 ; i++){
@@ -138,7 +150,7 @@ public class Platform {
 		for(int j = 0; j < 4; j++){
 			for(int i = 0 ; i < 3 ; i++){
 				if ( compareSquares(_squares[j][i + 1], _squares[j][i])){
-					combineSquares(_squares[j][i + 1], _squares[j][i]);
+					points += combineSquares(_squares[j][i + 1], _squares[j][i]);
 					for(int k = i + 1; k < 3; k++){
 						_squares[j][k].set_points(_squares[j][k+1].get_points());
 						_squares[j][k].set_active(_squares[j][k+1].get_active());
@@ -147,9 +159,13 @@ public class Platform {
 				}
 			}
 		}
+		
+		return points;
 	}
 	
-	public void moveRight(){
+	public int moveRight(){
+		
+		int points = 0;
 		
 		for(int i = 0; i < 4; i++){
 			for(int j = 3 ; j > 0 ; j--){
@@ -169,7 +185,7 @@ public class Platform {
 		for(int i = 0 ; i < 4 ; i++){
 			for(int j = 3; j > 0; j--){
 				if ( compareSquares(_squares[j - 1][i], _squares[j][i])){
-					combineSquares(_squares[j - 1][i], _squares[j][i]);
+					points += combineSquares(_squares[j - 1][i], _squares[j][i]);
 					for(int k = j - 1; k > 0; k--){
 						_squares[k][i].set_points(_squares[k-1][i].get_points());
 						_squares[k][i].set_active(_squares[k-1][i].get_active());
@@ -178,7 +194,9 @@ public class Platform {
 				}
 			}
 		}
-
+		
+		return points;
+		
 	}
 	
 	public Square[][] get_squares() {
