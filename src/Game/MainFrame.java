@@ -12,6 +12,8 @@ import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.InputProviderListener;
 
 
+
+
 public class MainFrame extends BasicGame implements InputProviderListener{
 	
 	public static final int tileWidth = 70;
@@ -25,7 +27,7 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	
 	private GameEngine engine;
 	private Platform platform;
-	
+	private boolean gameOver = false;
 	
 
 	public MainFrame() {
@@ -50,12 +52,28 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-				
+						
 		g.drawString("The best 2048 game ever, enjoy.", 100, 10);	
 		g.drawString("Current score:" + engine.get_totalPoints(), 100, 50);	
 		g.drawString("Record: " + engine.get_record(), 300, 50);
+		
+		Square[][] tiles = platform.get_squares();
+		
+		printTiles(g, tiles);
+		
+		if(gameOver){
+			g.drawString("GAMEOVER",startPlatformX,startPlatformY);
+		}
+		
+		g.drawString(message,0,400);
+		g.drawString("Press BACKSPACE to undo",0,450);
+		g.drawString("Press SPACE to exit",0,500);
+		   
+      
+	}
 
-	   Square[][] tiles = platform.get_squares();
+
+	private void printTiles(Graphics g, Square[][] tiles) {
 	   for(int i=0; i<tiles.length; i++) {
 	        for(int j=0; j<tiles[i].length; j++) {
 	        	int x = startPlatformX + tileWidth * i;
@@ -75,20 +93,12 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	        	}
 	        }
 	    }
-	
-		
-		g.drawString(message,0,400);
-		g.drawString("Press BACKSPACE to undo",0,450);
-		g.drawString("Press SPACE to exit",0,500);
-		       
-      
 	}
-
 
 	private Color getColor(int points) {
 		Color color = new Color(255, 255, 204);
 		while(points != 1){
-			color = color.darker(0.03f);
+			color = color.darker(0.2f);
 			points /= 2; 
 		}
 			
@@ -101,33 +111,42 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 
 	@Override
 	public void update(GameContainer container, int arg1) throws SlickException {
+		gameOver = platform.checkGameOver();
 	}
 	
 	public void keyPressed(int key, char c) {
 	}
 	
-	public void keyReleased(int key, char c) {        
-		if(key == Input.KEY_LEFT) {
-        	engine.setBackup(platform);
-			platform.moveLeft();
-        }
-        else if(key == Input.KEY_RIGHT){
-        	engine.setBackup(platform);
-        	platform.moveRight();
-        }
-        else if(key == Input.KEY_UP){
-        	engine.setBackup(platform);
-        	platform.moveUp();
-        }
-        else if(key == Input.KEY_DOWN){
-        	engine.setBackup(platform);
-        	platform.moveDown();
-        }
-        else if(key == Input.KEY_BACK){
-        	engine.undo();
-        }
-        else if(key == Input.KEY_SPACE){
-        	engine.setBackup(platform);
+	public void keyReleased(int key, char c) { 
+		if(!gameOver){
+			if(key == Input.KEY_LEFT) {
+	        	engine.setBackup(platform);
+				platform.moveLeft();
+	        }
+	        else if(key == Input.KEY_RIGHT){
+	        	engine.setBackup(platform);
+	        	platform.moveRight();
+	        }
+	        else if(key == Input.KEY_UP){
+	        	engine.setBackup(platform);
+	        	platform.moveUp();
+	        }
+	        else if(key == Input.KEY_DOWN){
+	        	engine.setBackup(platform);
+	        	platform.moveDown();
+	        }
+	        else if(key == Input.KEY_BACK){
+	        	engine.undo();
+	        }
+		}
+		else{
+			if(key == Input.KEY_ENTER){
+				engine.restart();
+	        }
+		}
+		
+		
+        if(key == Input.KEY_SPACE){
         	System.exit(0);
         }
 	}
