@@ -61,14 +61,14 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 		
 		printTiles(g, tiles);
 		
-/*		if(gameOver){
+		if(gameOver){
 			g.drawString("GAMEOVER",startPlatformX,startPlatformY);
 			g.drawString("Press ENTER to restart",0,450);
 		}
 		else{
 			g.drawString("Press BACKSPACE to undo",0,450);	
 		}
-*/		
+	
 
 		g.drawString("Press SPACE to exit",0,500);
 		   
@@ -126,26 +126,22 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	        	engine.setBackup(platform);
 				platform.moveLeft();
 				platform.randomSquare();
-	        	platform.checkGameOver();
 	        }
 	        else if(key == Input.KEY_RIGHT){
 	        	engine.setBackup(platform);
 	        	platform.moveRight();
 				platform.randomSquare();
-	        	platform.checkGameOver();
 	        }
 	        else if(key == Input.KEY_UP){
 	        	engine.setBackup(platform);
 	        	platform.moveUp();
 				platform.randomSquare();
-	        	platform.checkGameOver();
 	        	
 	        }
 	        else if(key == Input.KEY_DOWN){
 	        	engine.setBackup(platform);
 	        	platform.moveDown();
 				platform.randomSquare();
-	        	platform.checkGameOver();
 	        }
 	        else if(key == Input.KEY_BACK){
 	        	engine.undo();
