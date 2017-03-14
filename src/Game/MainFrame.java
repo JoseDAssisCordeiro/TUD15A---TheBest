@@ -150,6 +150,8 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 		else{
 			if(key == Input.KEY_ENTER){
 				engine.restart();
+				gameOver = false;
+				platform = engine.getPlatform();
 	        }
 		}
 		
@@ -167,5 +169,4 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	@Override
 	public void controlReleased(Command arg0) {		
 	}
-
 }
