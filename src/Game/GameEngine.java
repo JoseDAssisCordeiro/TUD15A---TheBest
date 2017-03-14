@@ -9,6 +9,7 @@ public class GameEngine {
 	private Platform _platform;
 	private Platform _platform_backup;
 	private int _totalPoints_backup;
+	private boolean _undoDone;
 	
 	
 	
@@ -17,7 +18,8 @@ public class GameEngine {
 		_totalPoints = 0;
 		_record = 0;
 		_platform = new Platform();
-		_platform_backup = new Platform();	
+		_platform_backup = new Platform();
+		_undoDone = false;
 	}
 	
 	public Platform getPlatform(){
@@ -28,6 +30,9 @@ public class GameEngine {
 		this._platform_backup.set_squares(p.get_squares());
 	}
 	
+	public void set_undoDone(boolean _undoDone){
+		this._undoDone = _undoDone;
+	}
 	public int get_totalPoints() {
 		return _totalPoints;
 	}
@@ -67,10 +72,12 @@ public class GameEngine {
 	
 	public void undo(){
 		
-		
-		this._platform.set_squares(this._platform_backup.get_squares());
-		this._totalPoints = this._totalPoints_backup;
-		
+		if(_undoDone == false){
+			this._platform.set_squares(this._platform_backup.get_squares());
+			this._totalPoints = this._totalPoints_backup;
+			this.set_undoDone(true);
+			
+		}
 		
 	}
 

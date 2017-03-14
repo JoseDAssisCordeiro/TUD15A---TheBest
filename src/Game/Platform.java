@@ -128,6 +128,7 @@ public class Platform {
 				}			
 			}
 		}
+		
 	}
 	
 	public void moveUp(){
