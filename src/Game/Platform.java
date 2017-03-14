@@ -37,7 +37,10 @@ public class Platform {
 	
 	//first parameter mantains all the characteristics
 	public void combineSquares(Square Q1, Square Q2) {
-		Q2.set_points(Q2.get_points() * 2);
+		
+		int x = Q2.get_points() * 2;
+		
+		Q2.set_points(x);
 		eraseSquare(Q1);
 	}
 	
@@ -62,7 +65,7 @@ public class Platform {
 				if ( compareSquares(_squares[j][i - 1], _squares[j][i])){
 					combineSquares(_squares[j][i - 1], _squares[j][i]);
 					for(int k = i-1; k > 0; k--){
-						//_squares[j][k].set_points(_squares[j][k-1].get_points());
+						_squares[j][k].set_points(_squares[j][k-1].get_points());
 						_squares[j][k].set_active(_squares[j][k-1].get_active());
 						_squares[j][k-1].set_active(false);
 					}
@@ -73,45 +76,81 @@ public class Platform {
 	
 	public void moveLeft(){
 		
-		for(int i = 0 ; i < 4; i++){
-			for(int j = 0; j < 4; j++){
-				if (_squares[i][j].get_active() == false){
-
-					
+		for(int i = 0; i < 4; i++){
+			for(int j = 0 ; j < 4 ; j++){
+				if (_squares[j][i].get_active() == false){
+					for(int k = j + 1; k < 4; k++){
+						if (_squares[k][i].get_active() == true){
+							_squares[j][i].set_points(_squares[j][k].get_points());
+							_squares[j][i].set_active(true);
+							_squares[k][i].set_active(false);
+						}
+					}
 				}
 			}
 		}
 		
-		for(int i = 0 ; i < 4; i++){
-			for(int j = 0; j < 3; j++){
-				if ( compareSquares(_squares[i][j], _squares[i][j + 1])){
-					combineSquares(_squares[i][j], _squares[i][j + 1]);
-					
-				}
-			}
-		}
+//		for(int i = 0 ; i < 4; i++){
+//			for(int j = 0; j < 3; j++){
+//				if ( compareSquares(_squares[i][j], _squares[i][j + 1])){
+//					combineSquares(_squares[i][j], _squares[i][j + 1]);
+//					
+//				}
+//			}
+//		}
 		
 	}
 	
 	public void moveUp(){
 		
-		for(int i = 0 ; i < 4; i++){
-			for(int j = 0; j < 4; j++){
+		for(int j = 0; j < 4; j++){
+			for(int i = 0 ; i < 4 ; i++){
 				if (_squares[j][i].get_active() == false){
-
-					
+					for(int k = i + 1; k < 4; k++){
+						if (_squares[j][k].get_active() == true){
+							_squares[j][i].set_points(_squares[j][k].get_points());
+							_squares[j][i].set_active(true);
+							_squares[j][k].set_active(false);
+						}
+					}
 				}
 			}
 		}
 		
-		for(int j = 0 ; j < 4; j++){
-			for(int i = 0; i < 3; i++){
-				if ( compareSquares(_squares[j][i], _squares[j][i + 1])){
-					combineSquares(_squares[j][i], _squares[j][i + 1]);
-					
+//		for(int j = 0 ; j < 4; j++){
+//			for(int i = 0; i < 3; i++){
+//				if ( compareSquares(_squares[j][i], _squares[j][i + 1])){
+//					combineSquares(_squares[j][i], _squares[j][i + 1]);
+//					
+//				}
+//			}
+//		}
+	}
+	
+	public void moveRight(){
+		
+		for(int i = 0; i < 4; i++){
+			for(int j = 3 ; j > 0 ; j--){
+				if (_squares[j][i].get_active() == false){
+					for(int k = j - 1; k > - 1; k--){
+						if (_squares[k][i].get_active() == true){
+							_squares[j][i].set_points(_squares[j][k].get_points());
+							_squares[j][i].set_active(true);
+							_squares[k][i].set_active(false);
+						}
+					}
 				}
 			}
 		}
+//		
+//		for(int i = 3 ; i > 0 ; i--){
+//			for(int j = 3; j > 0; j--){
+//				if ( compareSquares(_squares[j][i - 1], _squares[j][i])){
+//					combineSquares(_squares[j][i - 1], _squares[j][i]);
+//					
+//				}
+//			}
+//		}
 	}
 	
 	public Square[][] get_squares() {
@@ -132,26 +171,7 @@ public class Platform {
 		//this._squares = _squares;
 	}
 
-	public void moveRight(){
-		
-		for(int i = 3 ; i > 0 ; i--){
-			for(int j = 3; j > 0; j--){
-				if (_squares[j][i].get_active() == false){
 
-					
-				}
-			}
-		}
-		
-		for(int i = 3 ; i > 0 ; i--){
-			for(int j = 3; j > 0; j--){
-				if ( compareSquares(_squares[j][i - 1], _squares[j][i])){
-					combineSquares(_squares[j][i - 1], _squares[j][i]);
-					
-				}
-			}
-		}
-	}
 	
 	public boolean checkGameOver(){
 		
