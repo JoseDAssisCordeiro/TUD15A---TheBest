@@ -138,8 +138,6 @@ public class Platform {
 	
 	public boolean checkGameOver(){
 		
-		boolean someIqual;
-		
 		for(int i = 0; i < 3; i++)
 			for(int j = 0; i < 3; i++){
 				if(compareSquares(_squares[j][i], _squares[j][i + 1]))
