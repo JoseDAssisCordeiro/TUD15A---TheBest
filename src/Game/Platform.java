@@ -30,10 +30,8 @@ public class Platform {
 			return false;
 	}
 	
-	public void eraseSquare(Square Q2){
-		
-		_squares[Q2.get_xPos()][Q2.get_yPos()].set_active(false);
-		
+	public void eraseSquare(Square Q){
+		Q.set_active(false);	
 	}
 	
 	
