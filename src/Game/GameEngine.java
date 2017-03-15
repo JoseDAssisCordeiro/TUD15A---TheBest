@@ -45,6 +45,10 @@ public class GameEngine {
 		return _platform;
 	}
 	
+	public void setPlatform(Platform _platform){
+		this._platform = _platform;
+	}
+	
 	public void setBackup(Platform p){
 		this._platform_backup.set_squares(p.get_squares());
 	}
