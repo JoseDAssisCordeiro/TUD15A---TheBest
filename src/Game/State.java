@@ -2,12 +2,12 @@ package Game;
 
 public interface State {
 	
-	public void PressUp();
-	public void PressDown();
-	public void PressLeft();
-	public void PressRight();
-	public void PressP();
-	public void PressR();
-	public void PressEnter();	
+	public void PressUp(GameEngine engine);
+	public void PressDown(GameEngine engine);
+	public void PressLeft(GameEngine engine);
+	public void PressRight(GameEngine engine);
+	public void PressP(GameEngine engine);
+	public void PressR(GameEngine engine);
+	public void PressEnter(GameEngine engine);
 	
 }
