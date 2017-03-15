@@ -84,7 +84,7 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	        	g.setColor(Color.white);
 	        	
 	        	
-	        	g.setColor(Color.darkGray);	        	
+	        	g.setColor(Color.black);	        	
 	        	g.drawString(Integer.toString(tiles[i][j].get_points()), x + 35 , y + 35);
 	        	g.setColor(Color.white);
 	        	}
