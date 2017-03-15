@@ -1,5 +1,7 @@
 package Game;
 
+import org.newdawn.slick.Color;
+
 import Game.Platform;
 
 public class PlayingState implements State{
@@ -216,6 +218,28 @@ public class PlayingState implements State{
 	public State PressEnter(GameEngine engine){
 		
 		return this;
+	}
+	
+	public String getMessage() {
+		String message =  new StringBuilder()
+	      .append("Press p to pause\n")
+	      .append("Press r to restart game\n")
+	      .append("Press BACKSPACE to undo\n")
+	      .append("Press SPACE to exit\n")
+	      .toString();
+
+		return message;
+	}
+
+	public Color getColor(int points) {
+		Color color = new Color(255, 255, 204);
+		while(points != 1){
+			color = color.darker(0.2f);
+			points /= 2; 
+		}
+		
+		return color;
+		
 	}
 	
 }
