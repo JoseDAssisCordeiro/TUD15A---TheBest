@@ -34,7 +34,7 @@ public class PauseState implements State {
 		engine.setPlatform(new Platform());		
 		engine.setBackup(engine.getPlatform());
 		
-		return this;
+		return new PlayingState();
 	};
 	
 	public State PressEnter(GameEngine engine){

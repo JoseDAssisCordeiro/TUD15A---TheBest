@@ -36,7 +36,7 @@ public class GameOverState implements State{
 		engine.setPlatform(new Platform());		
 		engine.setBackup(engine.getPlatform());
 		
-		return this;
+		return new PlayingState();
 	};
 	
 	public String getMessage() {

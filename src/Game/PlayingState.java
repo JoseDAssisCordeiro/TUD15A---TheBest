@@ -20,9 +20,9 @@ public class PlayingState implements State{
 			engine.setBackup(platform);
 			
 			for(int j = 0; j < 4; j++){
-				for(int i = 3 ; i > 0 ; i--){
+				for(int i = 0 ; i < 4 ; i++){
 					if (_squares[j][i].get_active() == false){
-						for(int k = i - 1; k > -1; k--){
+						for(int k = i + 1; k < 4; k++){
 							if (_squares[j][k].get_active() == true){
 								_squares[j][i].set_points(_squares[j][k].get_points());
 								_squares[j][i].set_active(true);
@@ -33,19 +33,21 @@ public class PlayingState implements State{
 					}
 				}
 			}
-	
+			
+			
 			for(int j = 0; j < 4; j++){
-				for(int i = 3 ; i > 0 ; i--){
-					if ( platform.compareSquares(_squares[j][i - 1], _squares[j][i])){
-						points += platform.combineSquares(_squares[j][i - 1], _squares[j][i]);
-						for(int k = i-1; k > 0; k--){
-							_squares[j][k].set_points(_squares[j][k-1].get_points());
-							_squares[j][k].set_active(_squares[j][k-1].get_active());
-							_squares[j][k-1].set_active(false);
+				for(int i = 0 ; i < 3 ; i++){
+					if ( platform.compareSquares(_squares[j][i + 1], _squares[j][i])){
+						points += platform.combineSquares(_squares[j][i + 1], _squares[j][i]);
+						for(int k = i + 1; k < 3; k++){
+							_squares[j][k].set_points(_squares[j][k+1].get_points());
+							_squares[j][k].set_active(_squares[j][k+1].get_active());
+							_squares[j][k+1].set_active(false);
 						}
 					}
 				}
 			}
+			
 			
 			engine.set_totalPoints(points);
 			platform.randomSquare();
@@ -212,7 +214,13 @@ public class PlayingState implements State{
 	
 	public State PressR(GameEngine engine){
 		
-		return new InitialState();
+		if(engine.get_totalPoints() > engine.get_record())
+			engine.set_record(engine.get_totalPoints());
+		engine.set_totalPoints(0);		
+		engine.setPlatform(new Platform());		
+		engine.setBackup(engine.getPlatform());
+		
+		return new PlayingState();
 	}
 	
 	public State PressEnter(GameEngine engine){
