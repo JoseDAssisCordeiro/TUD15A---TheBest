@@ -1,5 +1,4 @@
 package Game;
-import Game.Platform;
 
 public class InitialState implements State{
 	
