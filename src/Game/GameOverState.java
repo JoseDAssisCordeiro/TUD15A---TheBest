@@ -42,7 +42,7 @@ public class GameOverState implements State{
 	public String getMessage() {
 		String message = new StringBuilder()
 	      .append("*** GAME OVER ***\n")
-	      .append("Press r to restart\n")
+	      .append("Press ENTER to restart\n")
 	      .append("Press SPACE to exit\n")
 	      .toString();
 
