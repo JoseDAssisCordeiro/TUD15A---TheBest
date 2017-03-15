@@ -223,10 +223,12 @@ public class Platform {
 			return false;
 		
 		for(int i = 0; i < 3; i++)
-			for(int j = 0; i < 3; i++){
+			for(int j = 0; j < 3; j++){
+ 
+
 				if(compareSquares(_squares[j][i], _squares[j][i + 1]))
 					return false;
-
+				
 				if(compareSquares(_squares[j][i], _squares[j+1][i]))
 					return false;
 			}
