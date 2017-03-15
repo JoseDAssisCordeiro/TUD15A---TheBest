@@ -46,6 +46,10 @@ public class PlayingState implements State{
 			}
 			
 			engine.set_totalPoints(points);
+			platform.randomSquare();
+			
+			if(platform.checkGameOver())
+				return new GameOverState();
 		}
 		
 		return this;
@@ -92,6 +96,10 @@ public class PlayingState implements State{
 			}
 
 			engine.set_totalPoints(points);	
+			platform.randomSquare();
+			
+			if(platform.checkGameOver())
+				return new GameOverState();
 		}
 		
 		return this;
@@ -137,7 +145,11 @@ public class PlayingState implements State{
 			}
 			
 			engine.set_totalPoints(points);
+			platform.randomSquare();
 		}
+
+		if(platform.checkGameOver())
+			return new GameOverState();
 		
 		return this;
 	}
@@ -182,7 +194,11 @@ public class PlayingState implements State{
 			}
 			
 			engine.set_totalPoints(points);
-		
+			platform.randomSquare();
+
+			if(platform.checkGameOver())
+				return new GameOverState();
+			
 		}
 		return this;
 	}
