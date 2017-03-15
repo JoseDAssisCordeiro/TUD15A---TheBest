@@ -23,13 +23,14 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	public static final int startPlatformY = 100;
 	
 	
+	private State state;
 	private GameEngine engine;
 	private Platform platform;
-	private boolean gameOver = false;
 	
 
 	public MainFrame() {
 		super("The best 2048 game ever");
+		state = new InitialState();
 		engine = GameEngine.getInstance();
 		platform = engine.getPlatform();
 	}
@@ -57,25 +58,19 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 		
 		Square[][] tiles = platform.get_squares();
 		
-		printTiles(g, tiles);
-		
-		if(gameOver){
-			g.drawString("GAMEOVER",startPlatformX,startPlatformY);
-			g.drawString("Press ENTER to restart",0,450);
-		}
-		else{
-			g.drawString("Press BACKSPACE to undo",0,450);	
-		}
-	
+		String message = state.getMessage();
 
-		g.drawString("Press SPACE to exit",0,500);
-		   
-      
+		g.drawString(message,10,400);
+		
+		
+		printTiles(g, tiles);
+		         
 	}
 
 
 	private void printTiles(Graphics g, Square[][] tiles) {
-	   for(int i=0; i<tiles.length; i++) {
+		
+		for(int i=0; i<tiles.length; i++) {
 	        for(int j=0; j<tiles[i].length; j++) {
 	        	int x = startPlatformX + tileWidth * i;
 	        	int y = startPlatformY + tileHeight * j;
@@ -83,7 +78,8 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	        	g.drawRect(x, y, tileWidth, tileHeight);
 	        	
 	        	if(tiles[i][j].get_active()){
-	        	g.setColor(getColor(tiles[i][j].get_points()));
+	        	
+	        	g.setColor(state.getColor(tiles[i][j].get_points()));
 	        	g.fillRect(x + 3, y + 3 ,tileWidth - 5,tileHeight -5);
 	        	g.setColor(Color.white);
 	        	
@@ -96,71 +92,47 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	    }
 	}
 
-	private Color getColor(int points) {
-		Color color = new Color(255, 255, 204);
-		while(points != 1){
-			color = color.darker(0.2f);
-			points /= 2; 
-		}
-			
-		return color;
-	}
-
 	@Override
 	public void init(GameContainer container) throws SlickException {		
 	}
 
 	@Override
 	public void update(GameContainer container, int arg1) throws SlickException {
-		gameOver = platform.checkGameOver();
 	}
 	
 	public void keyPressed(int key, char c) {
 	}
 	
 	public void keyReleased(int key, char c) { 
-		
-		int points = engine.get_totalPoints();
-		
-		if(!gameOver){
-			if(key == Input.KEY_LEFT && platform.checkMoveLeft()) {
-	        	engine.setBackup(platform);
-	        	engine.set_totalPoints( points + platform.moveLeft());
-				platform.randomSquare();
-	        	
-	        }
-	        else if(key == Input.KEY_RIGHT && platform.checkMoveRight()){
-	        	engine.setBackup(platform);
-	        	engine.set_totalPoints( points + platform.moveRight());
-				platform.randomSquare();
-	        }
-	        else if(key == Input.KEY_UP && platform.checkMoveUp()){
-	        	engine.setBackup(platform);
-	        	engine.set_totalPoints( points + platform.moveUp());
-				platform.randomSquare();
-	        	
-	        }
-	        else if(key == Input.KEY_DOWN && platform.checkMoveDown()){
-	        	engine.setBackup(platform);
-	        	engine.set_totalPoints( points + platform.moveDown());
-				platform.randomSquare();
-	        }
-	        else if(key == Input.KEY_BACK){
-	        	engine.undo();
-	        }
-		}
-		else{
-			if(key == Input.KEY_ENTER){
-				engine.restart();
-				gameOver = false;
-				platform = engine.getPlatform();
-	        }
-		}
-		
-		
-        if(key == Input.KEY_SPACE){
+		switch (key) {
+        case Input.KEY_UP:  
+        	state = state.PressUp(engine);
+            break;
+        case Input.KEY_DOWN:  
+        	state = state.PressDown(engine);
+            break;
+        case Input.KEY_LEFT:  
+        	state = state.PressLeft(engine);
+            break;
+        case Input.KEY_RIGHT:  
+        	state = state.PressRight(engine);
+            break;
+        case 25:  
+        	state = state.PressP(engine);
+            break;
+        case 19:  
+        	state = state.PressR(engine);
+            break;
+        case Input.KEY_ENTER:  
+        	state = state.PressEnter(engine);
+            break;
+        case Input.KEY_BACK:  
+        	engine.undo();
+            break;
+        case Input.KEY_SPACE:  
         	System.exit(0);
-        }
+            break;
+		}
 	}
 
 	@Override
