@@ -8,21 +8,33 @@ public class InitialState implements State{
 		
 	}
 	
-	public void PressUp(GameEngine engine){}
+	public State PressUp(GameEngine engine){
+		return this;
+	}
 
-	public void PressDown(GameEngine engine){}
+	public State PressDown(GameEngine engine){
+		return this;
+	}
 
-	public void PressLeft(GameEngine engine){}
+	public State PressLeft(GameEngine engine){
+		return this;
+	}
 
-	public void PressRight(GameEngine engine){}
+	public State PressRight(GameEngine engine){
+		return this;
+	}
 
-	public void PressP(GameEngine engine){}
+	public State PressP(GameEngine engine){
+		return this;
+	}
 
-	public void PressR(GameEngine engine){}
+	public State PressR(GameEngine engine){
+		return this;
+	}
 
-	public void PressEnter(GameEngine engine){
+	public State PressEnter(GameEngine engine){
 		
-		this = new PlayingState();
+		return new PlayingState();
 	}
 	
 
