@@ -33,6 +33,14 @@ public class GameEngine {
 	}
 	
 	
+	public int get_totalPoints_backup() {
+		return _totalPoints_backup;
+	}
+
+	public void set_totalPoints_backup(int _totalPoints_backup) {
+		this._totalPoints_backup = _totalPoints_backup;
+	}
+
 	public Platform getPlatform(){
 		return _platform;
 	}
