@@ -1,5 +1,7 @@
 package Game;
 
+import org.newdawn.slick.Color;
+
 public class PauseState implements State {
 	
 	public PauseState(){
@@ -37,5 +39,22 @@ public class PauseState implements State {
 		return this;
 	};	
 	
+	public String getMessage() {
+		String message = new StringBuilder()
+	      .append("Press p to resume the game\n")
+	      .append("Press SPACE to exit\n")
+	      .toString();
 
+		return message;
+	}
+
+	public Color getColor(int points) {
+		Color color = Color.lightGray;
+		while(points != 1){
+			color = color.darker(0.2f);
+			points /= 2; 
+		}
+		
+		return color;
+	}
 }

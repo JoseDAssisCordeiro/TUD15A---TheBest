@@ -1,5 +1,7 @@
 package Game;
 
+import org.newdawn.slick.Color;
+
 public interface State {
 	
 	public State PressUp(GameEngine engine);
@@ -9,5 +11,7 @@ public interface State {
 	public State PressP(GameEngine engine);
 	public State PressR(GameEngine engine);
 	public State PressEnter(GameEngine engine);
+	public String getMessage();
+	public Color getColor(int points);
 	
 }
