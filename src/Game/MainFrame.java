@@ -123,23 +123,24 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 		int points = engine.get_totalPoints();
 		
 		if(!gameOver){
-			if(key == Input.KEY_LEFT) {
+			if(key == Input.KEY_LEFT && platform.checkMoveLeft()) {
 	        	engine.setBackup(platform);
 	        	engine.set_totalPoints( points + platform.moveLeft());
 				platform.randomSquare();
+	        	
 	        }
-	        else if(key == Input.KEY_RIGHT){
+	        else if(key == Input.KEY_RIGHT && platform.checkMoveRight()){
 	        	engine.setBackup(platform);
 	        	engine.set_totalPoints( points + platform.moveRight());
 				platform.randomSquare();
 	        }
-	        else if(key == Input.KEY_UP){
+	        else if(key == Input.KEY_UP && platform.checkMoveUp()){
 	        	engine.setBackup(platform);
 	        	engine.set_totalPoints( points + platform.moveUp());
 				platform.randomSquare();
 	        	
 	        }
-	        else if(key == Input.KEY_DOWN){
+	        else if(key == Input.KEY_DOWN && platform.checkMoveDown()){
 	        	engine.setBackup(platform);
 	        	engine.set_totalPoints( points + platform.moveDown());
 				platform.randomSquare();

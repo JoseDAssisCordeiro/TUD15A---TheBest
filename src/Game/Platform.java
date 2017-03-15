@@ -242,6 +242,61 @@ public class Platform {
 		return true;
 	}
 	
+	public boolean checkMoveLeft() {
+		for(int i = 0; i < 4; i++){
+			for(int j = 0; j < 3 ; j++){
+				if( compareSquares(_squares[j][i],_squares[j+1][i]))
+					return true;
+					
+				if(_squares[j][i].get_active() == false && _squares[j +1][i].get_active() == true)
+					return true;
+				
+			}
+		}
+		return false;
+	}
+	
+	public boolean checkMoveRight() {
+		for(int i = 3; i > -1; i--){
+			for(int j = 3; j > 0  ; j--){
+				if( compareSquares(_squares[j][i], _squares[j-1][i]))
+					return true;
+				if(_squares[j][i].get_active() == false && _squares[j-1][i].get_active() == true)	
+					return true;
+				
+			}
+		}
+		return false;
+	}
+	
+	public boolean checkMoveDown() {
+		for(int i = 3; i > -1; i--){
+			for(int j = 3; j > 0  ; j--){
+				
+				if( compareSquares(_squares[i][j], _squares[i][j-1]))
+					return true;
+				if(_squares[i][j].get_active() == false && _squares[i][j-1].get_active() == true)	
+					return true;
+				
+								
+			}
+		}
+		return false;
+	}
+
+	public boolean checkMoveUp() {
+		for(int i = 0; i < 4; i++){
+			for(int j = 0; j < 3 ; j++){
+				if( compareSquares(_squares[i][j],_squares[i][j+1]))
+					return true;
+					
+				if(_squares[i][j].get_active() == false && _squares[i][j+1].get_active() == true)	
+					return true;
+				
+			}
+		}
+		return false;
+	}
 	public void randomSquare(){
 		
 		Random random = new Random();
