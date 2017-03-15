@@ -189,12 +189,12 @@ public class PlayingState implements State{
 	
 	public State PressP(GameEngine engine){
 		
-		return new PauseState(engine);
+		return new PauseState();
 	}
 	
 	public State PressR(GameEngine engine){
 		
-		return RestartState(engine);
+		return new InitialState();
 	}
 	
 	public State PressEnter(GameEngine engine){
