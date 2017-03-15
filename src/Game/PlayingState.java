@@ -216,8 +216,8 @@ public class PlayingState implements State{
 		
 		if(engine.get_totalPoints() > engine.get_record())
 			engine.set_record(engine.get_totalPoints());
-		engine.set_totalPoints(0);		
-		engine.setPlatform(new Platform());		
+		engine.set_totalPoints(0);
+		engine.setPlatform(new Platform());
 		engine.setBackup(engine.getPlatform());
 		
 		return new PlayingState();

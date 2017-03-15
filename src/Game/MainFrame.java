@@ -98,6 +98,7 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 
 	@Override
 	public void update(GameContainer container, int arg1) throws SlickException {
+		platform = engine.getPlatform();
 	}
 	
 	public void keyPressed(int key, char c) {
