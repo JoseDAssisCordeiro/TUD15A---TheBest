@@ -15,7 +15,7 @@ public class PlayingState implements State{
 		if(platform.checkMoveUp()){
 			
 			int points = engine.get_totalPoints();
-			Square[][] _squares = platform.get_squares();
+			SquareInterface[][] _squares = platform.get_squares();
 			engine.set_undoDone(false);
 			engine.setBackup(platform);
 			
@@ -67,7 +67,7 @@ public class PlayingState implements State{
 		if(platform.checkMoveDown()){
 			
 			int points = engine.get_totalPoints();
-			Square[][] _squares = platform.get_squares();
+			SquareInterface[][] _squares = platform.get_squares();
 			engine.set_undoDone(false);
 			engine.setBackup(platform);
 						
@@ -116,7 +116,7 @@ public class PlayingState implements State{
 		if(platform.checkMoveLeft()){
 			
 			int points = engine.get_totalPoints();
-			Square[][] _squares = platform.get_squares();
+			SquareInterface[][] _squares = platform.get_squares();
 			engine.set_undoDone(false);
 			engine.setBackup(platform);
 		
@@ -165,7 +165,7 @@ public class PlayingState implements State{
 		if(platform.checkMoveRight()){
 			
 			int points = engine.get_totalPoints();
-			Square[][] _squares = platform.get_squares();
+			SquareInterface[][] _squares = platform.get_squares();
 			engine.set_undoDone(false);
 			engine.setBackup(platform);
 		

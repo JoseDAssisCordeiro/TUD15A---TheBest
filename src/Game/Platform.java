@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Platform {
 	
-	private Square[][] _squares;
+	private SquareInterface[][] _squares;
 	private int _activeSquares;
 	
 	public Platform(){
@@ -32,20 +32,20 @@ public class Platform {
 		
 	}
 	
-	public boolean compareSquares( Square Q1 , Square Q2) {
+	public boolean compareSquares( SquareInterface Q1 , SquareInterface Q2) {
 		if (Q1.get_points() == Q2.get_points() && Q1.get_active() && Q2.get_active())
 			return true;
 		else 
 			return false;
 	}
 	
-	public void eraseSquare(Square Q){
+	public void eraseSquare(SquareInterface Q){
 		Q.set_active(false);
 	}
 	
 	
 	//first parameter mantains all the characteristics
-	public int combineSquares(Square Q1, Square Q2) {
+	public int combineSquares(SquareInterface Q1, SquareInterface Q2) {
 		
 		int x = Q2.get_points() * 2;
 		
@@ -56,12 +56,12 @@ public class Platform {
 		return Q2.get_points();
 	}
 	
-	public Square[][] get_squares() {
+	public SquareInterface[][] get_squares() {
 				
 		return _squares;
 	}
 
-	public void set_squares(Square[][] _squares) {
+	public void set_squares(SquareInterface[][] _squares) {
 		for(int i = 0; i < 4; i++){
 			for(int j = 0; j < 4; j++){
 				this._squares[i][j].set_active(_squares[i][j].get_active());

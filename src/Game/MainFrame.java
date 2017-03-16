@@ -56,7 +56,7 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 		g.drawString("Current score:" + engine.get_totalPoints(), 100, 50);	
 		g.drawString("Record: " + engine.get_record(), 300, 50);
 		
-		Square[][] tiles = platform.get_squares();
+		SquareInterface[][] tiles = platform.get_squares();
 		
 		String message = state.getMessage();
 
@@ -68,7 +68,7 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	}
 
 
-	private void printTiles(Graphics g, Square[][] tiles) {
+	private void printTiles(Graphics g, SquareInterface[][] tiles) {
 		
 		for(int i=0; i<tiles.length; i++) {
 	        for(int j=0; j<tiles[i].length; j++) {
