@@ -1,50 +1,28 @@
 package Game;
 
-public class Square {
+public class Square implements SquareInterface{
 
 	private int _points;
-	private int _xPos;
-	private int _yPos;
-	private int _colour;
 	private boolean _active;
 	
 	public Square(){
 		
 		_points = 2;
-		_colour = 0;
 		_active = false;
-	}
-	
-	public int get_xPos() {
-		return _xPos;
-	}
-
-	public void set_xPos(int _xPos) {
-		this._xPos = _xPos;
-	}
-
-	public int get_yPos() {
-		return _yPos;
-	}
-
-	public void set_yPos(int _yPos) {
-		this._yPos = _yPos;
 	}
 
 	public int get_points() {
 		return _points;
 	}
-
-	public void set_points(int _points) {
-		this._points = _points;
+	
+	public void updatePoints(Square square, int points){ 
+		
+		square.set_points(points);
 	}
-
-	public int get_colour() {
-		return _colour;
-	}
-
-	public void set_colour(int _colour) {
-		this._colour = _colour;
+	
+	
+	public void set_points(int points) {
+		this._points = points;
 	}
 	
 	public boolean get_active() {
