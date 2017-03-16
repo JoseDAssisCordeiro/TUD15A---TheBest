@@ -11,6 +11,7 @@ public interface State {
 	public State PressP(GameEngine engine);
 	public State PressR(GameEngine engine);
 	public State PressEnter(GameEngine engine);
+	public State PressBack(GameEngine engine);
 	public String getMessage();
 	public Color getColor(int points);
 	

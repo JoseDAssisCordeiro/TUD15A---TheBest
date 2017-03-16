@@ -39,6 +39,10 @@ public class GameOverState implements State{
 		return new PlayingState();
 	};
 	
+	public State PressBack(GameEngine engine){
+		return this;
+	};
+	
 	public String getMessage() {
 		String message = new StringBuilder()
 	      .append("*** GAME OVER ***\n")

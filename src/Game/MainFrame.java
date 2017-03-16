@@ -128,7 +128,7 @@ public class MainFrame extends BasicGame implements InputProviderListener{
         	state = state.PressEnter(engine);
             break;
         case Input.KEY_BACK:  
-        	engine.undo();
+        	state = state.PressBack(engine);
             break;
         case Input.KEY_SPACE:  
         	System.exit(0);

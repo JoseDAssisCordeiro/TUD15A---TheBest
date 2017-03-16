@@ -41,6 +41,10 @@ public class PauseState implements State {
 		return this;
 	};	
 	
+	public State PressBack(GameEngine engine){
+		return this;
+	};
+	
 	public String getMessage() {
 		String message = new StringBuilder()
 	      .append("Press p to resume the game\n")

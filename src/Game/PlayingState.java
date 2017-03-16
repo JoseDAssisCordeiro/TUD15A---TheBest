@@ -16,7 +16,7 @@ public class PlayingState implements State{
 			
 			int points = engine.get_totalPoints();
 			Square[][] _squares = platform.get_squares();
-			
+			engine.set_undoDone(false);
 			engine.setBackup(platform);
 			
 			for(int j = 0; j < 4; j++){
@@ -68,7 +68,7 @@ public class PlayingState implements State{
 			
 			int points = engine.get_totalPoints();
 			Square[][] _squares = platform.get_squares();
-			
+			engine.set_undoDone(false);
 			engine.setBackup(platform);
 						
 			for(int j = 0; j < 4; j++){
@@ -117,7 +117,7 @@ public class PlayingState implements State{
 			
 			int points = engine.get_totalPoints();
 			Square[][] _squares = platform.get_squares();
-			
+			engine.set_undoDone(false);
 			engine.setBackup(platform);
 		
 			for(int i = 0; i < 4; i++){
@@ -166,7 +166,7 @@ public class PlayingState implements State{
 			
 			int points = engine.get_totalPoints();
 			Square[][] _squares = platform.get_squares();
-			
+			engine.set_undoDone(false);
 			engine.setBackup(platform);
 		
 			for(int i = 0; i < 4; i++){
@@ -227,6 +227,11 @@ public class PlayingState implements State{
 		
 		return this;
 	}
+	
+	public State PressBack(GameEngine engine){
+		engine.undo();
+		return this;
+	};
 	
 	public String getMessage() {
 		String message =  new StringBuilder()
