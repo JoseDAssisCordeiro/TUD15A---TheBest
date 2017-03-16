@@ -214,10 +214,12 @@ public class PlayingState implements State{
 	
 	public State PressR(GameEngine engine){
 		
+		Platform platform = engine.getPlatform();
+		
 		if(engine.get_totalPoints() > engine.get_record())
 			engine.set_record(engine.get_totalPoints());
 		engine.set_totalPoints(0);
-		engine.setPlatform(new Platform());
+		engine.setPlatform(new Platform(platform.is_hard()));
 		engine.setBackup(engine.getPlatform());
 		
 		return new PlayingState();

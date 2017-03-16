@@ -15,7 +15,7 @@ public class Square implements SquareInterface{
 		return _points;
 	}
 	
-	public void updatePoints(Square square, int points){ 
+	public void updatePoints(SquareInterface square, int points){ 
 		
 		square.set_points(points);
 	}

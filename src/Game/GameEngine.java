@@ -17,8 +17,8 @@ public class GameEngine {
 		
 		_totalPoints = 0;
 		_record = 0;
-		_platform = new Platform();
-		_platform_backup = new Platform();
+		_platform = new Platform(false);
+		_platform_backup = new Platform(false);
 		_undoDone = false;
 	}
 	
@@ -82,16 +82,6 @@ public class GameEngine {
 	public void addPoints(int score){
 		
 		_totalPoints += score;
-		
-	}
-	
-	public void restart(){
-		
-		if(_totalPoints > _record)
-			_record = _totalPoints;
-		_totalPoints = 0;
-		_platform = new Platform();
-		
 		
 	}
 	

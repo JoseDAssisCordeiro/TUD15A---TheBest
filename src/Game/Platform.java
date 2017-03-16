@@ -1,23 +1,25 @@
 package Game;
 
-import Game.Square;
 import java.util.Random;
 
 public class Platform {
 	
 	private SquareInterface[][] _squares;
 	private int _activeSquares;
+	private boolean _hard;
 	
-	public Platform(){
+	public Platform(boolean y){
 		
 		int i, j, k;
 		Random random = new Random();
 		
-		_squares = new Square[4][4];
+		_squares = new SquareInterface[4][4];
+		
+		_hard = y;
 		
 		for(i = 0; i < 4; i ++)
 			for(j = 0; j < 4; j++)
-				_squares[i][j] = new Square();
+				_squares[i][j] = defineSquareType(_hard);
 
 		_activeSquares = 0;
 		
@@ -29,6 +31,23 @@ public class Platform {
 				_activeSquares++;
 			}
 		}
+		
+	}
+		
+	public boolean is_hard() {
+		return _hard;
+	}
+
+	public void set_hard(boolean _hard) {
+		this._hard = _hard;
+	}
+
+	public SquareInterface defineSquareType(boolean x){
+		
+		if(x)
+			return new Squarex4Adapter();
+		else 
+			return new Square(); 
 		
 	}
 	
@@ -50,7 +69,7 @@ public class Platform {
 		int x = Q2.get_points() * 2;
 		
 		_activeSquares--;
-		Q2.set_points(x);
+		Q2.updatePoints(Q2, x);
 		eraseSquare(Q1);
 		
 		return Q2.get_points();
