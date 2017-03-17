@@ -17,8 +17,8 @@ public class GameEngine {
 		
 		_totalPoints = 0;
 		_record = 0;
-		_platform = new Platform(false);
-		_platform_backup = new Platform(false);
+		_platform = new Platform(true);
+		_platform_backup = new Platform(true);
 		_undoDone = false;
 	}
 	

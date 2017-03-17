@@ -1,5 +1,9 @@
 package Game;
 
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+
 public class Square implements SquareInterface{
 
 	private int _points;
@@ -33,5 +37,19 @@ public class Square implements SquareInterface{
 		this._active = _active;
 	}
 	
-	
+	public void draw_square(Graphics g, State state, int tileWidth,int tileHeight, int x, int y) 
+			throws SlickException{
+		g.drawRect(x, y, tileWidth, tileHeight);
+			
+		if(_active){
+		
+		g.setColor(state.getColor(_points));
+		g.fillRect(x + 3, y + 3 ,tileWidth - 5,tileHeight -5);
+		g.setColor(Color.white);
+		
+		g.setColor(Color.darkGray);	        	
+    	g.drawString(Integer.toString(_points), x + 35 , y + 35);
+		g.setColor(Color.white);
+		}
+	}
 }

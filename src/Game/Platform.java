@@ -8,14 +8,14 @@ public class Platform {
 	private int _activeSquares;
 	private boolean _hard;
 	
-	public Platform(boolean y){
+	public Platform(boolean isHard){
 		
 		int i, j, k;
 		Random random = new Random();
 		
 		_squares = new SquareInterface[4][4];
 		
-		_hard = y;
+		_hard = isHard;
 		
 		for(i = 0; i < 4; i ++)
 			for(j = 0; j < 4; j++)
@@ -42,9 +42,9 @@ public class Platform {
 		this._hard = _hard;
 	}
 
-	public SquareInterface defineSquareType(boolean x){
+	public SquareInterface defineSquareType(boolean isHard){
 		
-		if(x)
+		if(isHard)
 			return new Squarex4Adapter();
 		else 
 			return new Square(); 

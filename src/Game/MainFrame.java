@@ -68,26 +68,13 @@ public class MainFrame extends BasicGame implements InputProviderListener{
 	}
 
 
-	private void printTiles(Graphics g, SquareInterface[][] tiles) {
+	private void printTiles(Graphics g, SquareInterface[][] tiles) throws SlickException {
 		
 		for(int i=0; i<tiles.length; i++) {
 	        for(int j=0; j<tiles[i].length; j++) {
 	        	int x = startPlatformX + tileWidth * i;
 	        	int y = startPlatformY + tileHeight * j;
-	        	g.drawRect(startPlatformX, startPlatformY, tileWidth, tileHeight);
-	        	g.drawRect(x, y, tileWidth, tileHeight);
-	        	
-	        	if(tiles[i][j].get_active()){
-	        	
-	        	g.setColor(state.getColor(tiles[i][j].get_points()));
-	        	g.fillRect(x + 3, y + 3 ,tileWidth - 5,tileHeight -5);
-	        	g.setColor(Color.white);
-	        	
-	        	
-	        	g.setColor(Color.black);	        	
-	        	g.drawString(Integer.toString(tiles[i][j].get_points()), x + 35 , y + 35);
-	        	g.setColor(Color.white);
-	        	}
+	        	tiles[i][j].draw_square(g, state, tileWidth, tileHeight, x, y);
 	        }
 	    }
 	}
