@@ -13,12 +13,20 @@ public class GameEngine {
 	
 	private static GameEngine engine;	
 	
+	public static final int easyMode = 1;
+	public static final int hardMode = 2;
+	public static final int robotMode = 3;
+	
+	
 	private GameEngine(){
 		
 		_totalPoints = 0;
 		_record = 0;
-		_platform = new Platform(true);
-		_platform_backup = new Platform(true);
+		
+		int mode = hardMode;
+		_platform = new Platform(mode);
+		_platform_backup = new Platform(mode);
+		
 		_undoDone = false;
 	}
 	

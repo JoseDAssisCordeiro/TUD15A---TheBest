@@ -35,7 +35,7 @@ public class GameOverState implements State{
 		if(engine.get_totalPoints() > engine.get_record())
 			engine.set_record(engine.get_totalPoints());
 		engine.set_totalPoints(0);		
-		engine.setPlatform(new Platform(platform.is_hard()));		
+		engine.setPlatform(new Platform(platform.get_mode()));		
 		engine.setBackup(engine.getPlatform());
 		
 		return new PlayingState();

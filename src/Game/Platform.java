@@ -6,20 +6,25 @@ public class Platform {
 	
 	private SquareInterface[][] _squares;
 	private int _activeSquares;
-	private boolean _hard;
+	private int _mode;
 	
-	public Platform(boolean isHard){
+	public static final int easyMode = 1;
+	public static final int hardMode = 2;
+	public static final int robotMode = 3;
+	
+	
+	public Platform(int mode){
 		
 		int i, j, k;
 		Random random = new Random();
 		
 		_squares = new SquareInterface[4][4];
 		
-		_hard = isHard;
+		_mode = mode;
 		
 		for(i = 0; i < 4; i ++)
 			for(j = 0; j < 4; j++)
-				_squares[i][j] = defineSquareType(_hard);
+				_squares[i][j] = defineSquareType(_mode);
 
 		_activeSquares = 0;
 		
@@ -34,22 +39,26 @@ public class Platform {
 		
 	}
 		
-	public boolean is_hard() {
-		return _hard;
+	public int get_mode() {
+		return _mode;
 	}
 
-	public void set_hard(boolean _hard) {
-		this._hard = _hard;
+	public void set_mode(int mode) {
+		this._mode = mode;
 	}
 
-	public SquareInterface defineSquareType(boolean isHard){
-		
-		if(isHard)
-			return new RobotSquareAdapter();
-//			return new Squarex4Adapter();
-		else 
-			return new Square(); 
-		
+	public SquareInterface defineSquareType(int mode){
+					
+		switch (mode) {
+        case easyMode:  
+        	return new Squarex4Adapter();
+        case hardMode:  
+        	return new Square();
+        case robotMode:  
+        	return new RobotSquareAdapter();
+        default:
+        	return new Square(); 		
+		}		
 	}
 	
 	public boolean compareSquares( SquareInterface Q1 , SquareInterface Q2) {
