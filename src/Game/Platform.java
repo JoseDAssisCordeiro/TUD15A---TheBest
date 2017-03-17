@@ -45,7 +45,8 @@ public class Platform {
 	public SquareInterface defineSquareType(boolean isHard){
 		
 		if(isHard)
-			return new Squarex4Adapter();
+			return new RobotSquareAdapter();
+//			return new Squarex4Adapter();
 		else 
 			return new Square(); 
 		
